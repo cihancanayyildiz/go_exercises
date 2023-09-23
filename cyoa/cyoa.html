@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Create Your Own Adventure - {{ .Title }}</title>
+  </head>
+  <body>
+    <h1>CYOA</h1>
+    {{ .Title }}
+    <br /><br />
+    {{ .Story }}
+    <br /><br />
+    {{ range $o := .Options}}
+    <span id="choice">&#x261e;</span><a href="{{ $o.Arc }}">{{ $o.Text }}</a
+    ><br /><br />
+    {{end}}
+  </body>
+</html>
