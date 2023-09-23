@@ -1,4 +1,4 @@
-package main
+package html_link_parser
 
 import (
 	"flag"
@@ -15,15 +15,7 @@ type Link struct {
 	Text string
 }	
 
-func main() {
-	filepath := flag.String("file", "ex1.html", "html file path")
-	flag.Parse()
-	file, err := os.ReadFile(*filepath)
-
-	if err != nil {
-		log.Fatalln(err)
-	}
-
+func Html_link_parser(file []byte) []Link {
 	tkn := html.NewTokenizer(strings.NewReader(string(file)))
 
 	var link []Link
@@ -73,5 +65,19 @@ func main() {
 			break
 		}
 	}
+	return link
+}
+
+func main() {
+	filepath := flag.String("file", "ex1.html", "html file path")
+	flag.Parse()
+	file, err := os.ReadFile(*filepath)
+
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	link := Html_link_parser(file)
+
 	fmt.Println(link)
 }
